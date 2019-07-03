@@ -1,0 +1,149 @@
+<html>
+    <head>
+        <style>
+            body{
+                width: 600px;
+            }
+            input.right {
+                float: right;
+                margin-right: 200px;
+            }
+        </style> 
+        <script type="text/javascript" src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    </head>
+    <body>  
+        <h3 style="text-align: center">信用卡申请表</h3>
+            <form action="/echo" method="POST" >
+                <p>申请人姓名：<input class="right" type="text" name="username" placeholder="请输入您的真实姓名"></p>
+                <p>申请人证件类型：
+                        <input style="margin-left: 105px" type="radio" name="lol">身份证
+                        <input style="margin-left: 5px" type="radio" name="cs">居民户口本
+                        <input style="margin-left: 5px" type="radio" name="moshou">港澳台身份证
+                        <input style="margin-left: 5px" type="radio" name="shouwang">其他    
+                </p>
+                <p>证件号码：<input class="right" type="password" name="password" placeholder="请输入证件号码"></p>
+                <p>有效手机号：<input class="right" type="password" name="password" placeholder="请输入手机号"></p>
+                <p>性别:
+                        <input style="margin-left: 200px" type="radio"  name="girl">女
+                        <input style="margin-left: 5px" type="radio" name="boy">男
+                </p>
+                <p>是否有固定工作:
+                        <input style="margin-left: 120px" type="radio"  name="girl">是
+                        <input style="margin-left: 5px" type="radio" name="boy">否
+                </p>
+                <p>公司性质：
+                    <input style="margin-left: 155px" type="checkbox" name="lol">外资企业
+                    <input style="margin-left: 5px" type="checkbox" name="cs">国有企业
+                    <input style="margin-left: 5px" type="checkbox" name="moshou">港澳台企业
+                    <input style="margin-left: 5px" type="checkbox" name="shouwang">其他
+                </p>
+                <p>户籍所在地：
+                        <select id="province" onchange="provinceSelect(this)"></select>
+                        <select id="city" onchange="citySelect(this)"> </select> 
+                        <select id="region"></select>                        
+                </p>
+                <p><input type="text" style="height: 100px; width: 500px;" name="remarks" placeholder="备注"></p>
+                <p>
+                    <button type="submit">提交申请</button>
+                    <button type="button">取消申请</button>
+                </p>
+              </form>
+    </body>
+    <script type="text/javascript">
+        var list = new Array(2);
+        list["广东省"]=["珠海市","广州市"];
+        list["广东省"]["珠海市"]=["香洲区","斗门区","拱北区","三灶区"];
+        list["广东省"]["广州市"]=["天河区","越秀区","白云区","天河区"];
+        $(function(){ var option = "<option value='请选择省份'>请选择省份</option>";
+            $("#province").append(option);
+            for(var op in list){
+                var option = "<option value='"+op+"'>"+op+"</option>"; $("#province").append(option);
+            }
+        });
+        function provinceSelect(province){ 
+            $("#city").empty();
+            $("#city").append("<option value='请选择城市'>请选择城市</option>");
+            var provinces = $(province).val();
+            for(var i=0;i < list[provinces].length;i++){
+                $("#city").append("<option value='"+list[provinces][i]+"'>"+list[provinces][i]+"</option>");
+            }
+        }
+        function citySelect(city){
+            $("#region").empty();
+            $("#region").append("<option value='请选择区域'>请选择区域</option>");
+            var citys = $(city).val();
+            var provinces = $("#province").val();
+            for(var i=0;i < list[provinces][citys].length;i++){
+                $("#region").append("<option value='"+list[provinces][citys][i]+"'>"+list[provinces][citys][i]+"</option>");
+            }
+        }
+    </script>
+</html>
+
+
+<!--<video src="例子.mp4" controls="controls" 
+            poster="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3161012477,4100816587&fm=26&gp=0.jpg">
+        </video>
+        <br />
+        <audio controls="controls">
+                <source src="Sophie Zelmani - Breeze-21s.mp3" type="audio/mp3" />
+                <source src="Sophie Zelmani - Breeze-21s.ogg" type="audio/ogg" />
+            Your browser does not support this audio format.
+        </audio>
+
+    <script type="text/javascript">  
+            document.write("<table>");   
+            for (var x = 1; x <= 9; x++){  
+                document.write("<tr>");  
+                for (var y = 1; y <= x; y++) {  
+                    document.write("<th>" + y + "*" + x + "=" + y * x + "</th>");     
+                }  
+            }  
+            document.write("</table>");
+        </script>
+
+        <pre>
+                咏鹅
+
+                鹅，鹅，鹅，
+
+                曲项向天歌。
+
+                白毛浮绿水，
+
+                红掌拨清波。
+          </pre>
+
+          <table border="1">
+                <caption>购物车</caption>
+                <thead>
+                <tr>
+                        <th rowspan="2">名称</th>
+                        <th colspan="2">2016-11-12</th>
+                        <th rowspan="2">小计</th>
+                        </tr>
+                        <tr>
+                            <th>重量</th>
+                            <th>单价</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td>苹果</td>
+                        <td>3公斤</td>
+                        <td>5元/公斤</td>
+                        <td>15元</td>
+                        </tr>
+                        <tr>
+                        <td>香蕉</td>
+                        <td>2公斤</td>
+                        <td>6元/公斤</td>
+                        <td>12元</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">总价</td>
+                            <td>27元</td>
+                        </tr>
+                    </tbody>
+                    </table>
+    -->
